@@ -17,24 +17,23 @@ package dk.erdetbankdag.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Service;
  
-@Path("/sayHello")
+@Path("/")
 @Service
 public interface HelloService {
  
     @GET
-    @Path("")
+    @Path("month")
     @Produces(MediaType.TEXT_PLAIN)
-    String welcome();
+    String month();
     
     @GET
-    @Path("/{a}")
+    @Path("/day")
     @Produces(MediaType.TEXT_PLAIN)
-    String sayHello(@PathParam("a") String a);
+    String day();
 
 }
