@@ -20,11 +20,13 @@ import java.util.Arrays;
 import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @SpringBootApplication
 public class SampleRestApplication {
@@ -43,7 +45,10 @@ public class SampleRestApplication {
         endpoint.setBus(bus);
         endpoint.setServiceBeans(Arrays.<Object>asList(new BankdagServiceImpl()));
         endpoint.setAddress("/");
-        endpoint.setFeatures(Arrays.asList(new Swagger2Feature()));
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        endpoint.setProvider(new JacksonJsonProvider(mapper));
         return endpoint.create();
     }
 }
