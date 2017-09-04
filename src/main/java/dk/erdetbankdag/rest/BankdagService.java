@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
  
 @Path("/")
 @Service
-public interface HelloService {
+public interface BankdagService {
  
     @GET
     @Path("month")

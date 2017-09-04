@@ -18,7 +18,7 @@ package dk.erdetbankdag.rest;
 import io.swagger.annotations.Api;
 
 @Api("/bankday")
-public class HelloServiceImpl implements HelloService {
+public class BankdagServiceImpl implements BankdagService {
 
     public String month() {
         return "month";
