@@ -15,40 +15,10 @@
  */
 package dk.erdetbankdag.rest;
 
-import java.util.Arrays;
-
-import org.apache.cxf.Bus;
-import org.apache.cxf.endpoint.Server;
-import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-
-@SpringBootApplication
-public class SampleRestApplication {
-
-    @Autowired
-    private Bus bus;
-
-    public static void main(String[] args) {
-        SpringApplication.run(SampleRestApplication.class, args);
-    }
- 
-    @Bean
-    public Server rsServer() {
-        // setup CXF-RS
-        JAXRSServerFactoryBean endpoint = new JAXRSServerFactoryBean();
-        endpoint.setBus(bus);
-        endpoint.setServiceBeans(Arrays.<Object>asList(new BankdagServiceImpl()));
-        endpoint.setAddress("/");
-        ObjectMapper mapper = new ObjectMapper();
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
 
-        endpoint.setProvider(new JacksonJsonProvider(mapper));
-        return endpoint.create();
-    }
+@ApplicationPath("/rest")
+public class SampleRestApplication extends Application {
 }

@@ -24,9 +24,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import dk.erdetbankdag.util.Holiday;
 
 
@@ -85,13 +82,12 @@ class MonthResponse {
 }
 
 @Path("/")
-@Service
 public class BankdagServiceImpl {
 
     @GET
     @Path("/month")
     @Produces(MediaType.APPLICATION_JSON)
-    public @ResponseBody MonthResponse month() {
+    public MonthResponse month() {
         MonthResponse res = new MonthResponse();
         Calendar theDate = getDate();
         res.init(theDate.get(Calendar.MONTH), theDate.get(Calendar.YEAR));
@@ -101,7 +97,7 @@ public class BankdagServiceImpl {
     @GET
     @Path("/day")
     @Produces(MediaType.APPLICATION_JSON)
-    public @ResponseBody Response day() {
+    public Response day() {
         Response res = new Response();
         res.setErDetBankDag(!Holiday.isItHoliday(getDate()));
         return res;
